@@ -1,27 +1,13 @@
 services:
-    api-gateway:
+    monorepo:
         build:
             context: .
             dockerfile: docker/DEV.Dockerfile
-            args:
-                - SERVICE=api-gateway
         volumes:
-            - ./services/api-gateway:/app/services/api-gateway
-            - ./.pnpm-store:/app/.pnpm-store
-            - ./node_modules:/app/node_modules
-        networks:
-            - microservices
-
-    auth:
-        build:
-            context: .
-            dockerfile: docker/DEV.Dockerfile
-            args:
-                - SERVICE=auth
-        volumes:
-            - ./services/auth:/app/services/auth
-            - ./.pnpm-store:/app/.pnpm-store
-            - ./node_modules:/app/node_modules
+            - ./:/app/
+        ports:
+            - "8000:8000"
+            - "8001:8001"
         networks:
             - microservices
 

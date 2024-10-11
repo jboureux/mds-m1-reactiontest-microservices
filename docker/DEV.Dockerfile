@@ -1,11 +1,14 @@
 FROM node:lts-alpine
-ARG SERVICE
-ENV SERVICE=$SERVICE
 
 WORKDIR /app
 
 COPY . .
 
 RUN npm i -g pnpm
+RUN apk --no-cache add curl
 
-CMD pnpm install --filter ${SERVICE} && pnpm --filter ${SERVICE} dev
+USER node
+
+EXPOSE 8000-8003
+
+CMD pnpm install && pnpm -r dev
