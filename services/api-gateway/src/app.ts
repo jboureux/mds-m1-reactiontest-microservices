@@ -13,5 +13,5 @@ app.listen(port, async () => {
 
 app.get("/health", (req, res) => {
     console.log("health test");
-    res.status(200).send("Auth Service Healthy");
+    res.status(200).send("Api-gateway Service Healthy");
 });

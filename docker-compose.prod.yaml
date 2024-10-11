@@ -15,11 +15,10 @@ services:
         build: 
             context: . 
             dockerfile: docker/PROD.Dockerfile
+            target: production
             args:
                - SERVICE=auth
                - PORT=8001
-        environment:
-           - DATABASE_URL=mongodb://database/test-auth
         networks :
            - auth
            - api-gateway
