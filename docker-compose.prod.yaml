@@ -1,0 +1,44 @@
+services:
+    api-gateway:
+        build: 
+            context: . 
+            dockerfile: docker/PROD.Dockerfile
+            target: production
+            args:
+               - SERVICE=api-gateway
+               - PORT=8000
+        networks :
+           - api-gateway
+        ports :
+           - "8000:8000"
+    auth:
+        build: 
+            context: . 
+            dockerfile: docker/PROD.Dockerfile
+            args:
+               - SERVICE=auth
+               - PORT=8001
+        environment:
+           - DATABASE_URL=mongodb://database/test-auth
+        networks :
+           - auth
+           - api-gateway
+        ports :
+           - "8001:8001"
+    user-service:
+        image: mongo:latest
+        ports:
+            - "27217:27017"
+        networks:
+            - user-service
+networks:
+    api-gateway:
+        driver: bridge
+    auth:
+        driver: bridge
+    user-service:
+        driver: bridge
+
+          
+        
+              
