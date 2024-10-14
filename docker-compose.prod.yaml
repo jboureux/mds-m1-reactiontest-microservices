@@ -24,18 +24,36 @@ services:
            - api-gateway
         ports :
            - "8001:8001"
-    user-service:
+
+    user:
+        build: 
+            context: . 
+            dockerfile: docker/PROD.Dockerfile
+            target: production
+            args:
+               - SERVICE=user
+               - PORT=8002
+        networks :
+           - user
+           - api-gateway
+        ports :
+           - "8002:8002"
+
+    user-database:
         image: mongo:latest
         ports:
             - "27217:27017"
         networks:
             - user-service
+
 networks:
     api-gateway:
         driver: bridge
     auth:
         driver: bridge
     user-service:
+        driver: bridge
+    user:
         driver: bridge
 
           

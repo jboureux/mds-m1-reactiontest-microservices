@@ -1,0 +1,24 @@
+{
+    "name": "user",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "dev": "pnpm dlx nodemon --exec tsx src/app.ts",
+        "build": "pnpm exec tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.1",
+        "typescript": "^5.6.3"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.7.5",
+        "nodemon": "^3.1.7",
+        "tsx": "^4.19.1"
+    }
+}
